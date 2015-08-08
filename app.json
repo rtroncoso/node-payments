@@ -1,0 +1,7 @@
+{
+  "name": "rt-payments",
+  "description": "Receive and process different providers payments",
+  "repository": "https://github.com/rtroncoso/payments",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "angular", "loopback", "payments", "mercadolibre"]
+}
