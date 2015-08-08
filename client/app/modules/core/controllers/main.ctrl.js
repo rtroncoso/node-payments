@@ -15,8 +15,7 @@ angular.module('com.module.core')
   .controller('MainCtrl', function($scope, $rootScope, $state, $location,
     CoreService, User, gettextCatalog, AppAuth) {
 
-	AppAuth.ensureHasCurrentUser(function(user)
-    {
+	AppAuth.ensureHasCurrentUser(function(user) {
       $scope.currentUser = user;
 	});
 
