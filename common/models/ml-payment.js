@@ -1,30 +1,44 @@
+'use strict';
+var async = require('async');
+
 module.exports = function(Payment) {
 
   Payment.observe('before save', function(ctx, next) {
     var model = ctx.instance;
-    model.mlId = model.id;
-    model.unsetAttribute('id');
 
-    processPayment(model);
+    async.parallel([
+      function updateModel(callback) {
+        model.mlId = model.id;
+        model.unsetAttribute('id');
+
+        callback();
+      },
+      function processPayment(callback) {
+
+        var mp = Payment.app.mp;
+
+        mp.getPayment(model.mlId, function(err, data) {
+          handlePaymentInfo(err, data, callback, model);
+          callback();
+        });
+      }
+    ]);
+
     next();
   });
 
-  function processPayment(model) {
-    var mp = Payment.app.mp;
+  function handlePaymentInfo(err, data, callback, model) {
+    if(err) {
+      throw new err;
+    }
 
-    mp.getPayment(model.mlId, function(err, data) {
+    console.log(data);
+    model.updateAll({ id: model.id }, data, function(err, results) {
       if(err) {
-        throw new err;
+        callback(err);
       }
 
-      console.log(data);
-      module.updateAll({ id: model.id }, data, function(err, results) {
-        if(err) {
-          throw new err;
-        }
-
-        console.log(results);
-      });
+      console.log(results);
     });
   }
 

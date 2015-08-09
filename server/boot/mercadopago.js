@@ -8,10 +8,10 @@ module.exports = function(app) {
     app.mp.sandboxMode(true);
   }
 
-  var at = app.mp.getAccessToken()
+  app.mp.getAccessToken()
     .then(function(accessToken) {
       app.mp.accessToken = accessToken;
-      console.log('Successfully injected MercadoPago credentials in app');
+      console.log('Successfully initialized MP in app');
     }, function(err) {
       console.log('Unhandled MP error: ' + err.message);
     });
