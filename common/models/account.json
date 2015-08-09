@@ -1,26 +1,28 @@
 {
-  "name": "mlPayment",
-  "plural": "payments",
-  "base": "PersistedModel",
+  "name": "account",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "http": {
-    "path": "payments"
-  },
   "properties": {
-    "topic": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "mlId": {
-      "type": "number",
+    "mail": {
+      "type": "string",
       "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccessToken",
+      "foreignKey": "accountId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -1,9 +1,12 @@
 'use strict';
-
 var MP = require('mercadopago');
 
 module.exports = function(app) {
   app.mp = new MP(process.env.MP_ID, process.env.MP_SECRET);
+
+  if(process.env.MP_SANDBOX) {
+    app.mp.sandboxMode(true);
+  }
 
   var at = app.mp.getAccessToken()
     .then(function(accessToken) {

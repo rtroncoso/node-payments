@@ -18,12 +18,10 @@ app.use(loopback.favicon());
 app.use(loopback.compress());
 boot(app, __dirname);
 
-
 // -- Mount static files here--
 // All static middleware should be registered at the end, as all requests
 // passing the static middleware are hitting the file system
 // Example:
-
 var staticPath = null;
 
 if (env !== 'prod') {
