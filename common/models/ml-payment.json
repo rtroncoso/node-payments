@@ -1,0 +1,26 @@
+{
+  "name": "mlPayment",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "http": {
+    "path": "payments"
+  },
+  "plural": "payments",
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "topic": {
+      "type": "string",
+      "required": true
+    },
+    "mlId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

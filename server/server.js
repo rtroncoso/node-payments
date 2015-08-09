@@ -4,20 +4,18 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
 var app = module.exports = loopback();
-var env = require('get-env')({
+var env = require('get-env');
+var dotenv = require('dotenv');
+
+// Load enviroment stuff
+dotenv.load();
+env({
   test: 'test'
 });
 
-// Set up the /favicon.ico
+// Setup and boot loopback
 app.use(loopback.favicon());
-
-// request pre-processing middleware
 app.use(loopback.compress());
-
-// -- Add your pre-processing middleware here --
-
-
-// boot scripts mount components like REST API
 boot(app, __dirname);
 
 

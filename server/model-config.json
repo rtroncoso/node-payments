@@ -73,5 +73,9 @@
   "user": {
     "dataSource": "mongoDb",
     "public": true
+  },
+  "mlPayment": {
+    "dataSource": "mongoDb",
+    "public": true
   }
 }
